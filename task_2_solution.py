@@ -19,3 +19,9 @@ def calculate_data_dtypes(x):
         elif column == "object":
             iObj +=1
     return iNum, iObj
+
+def calculate_cheap_apartment(x):
+    return x[x['price_doc'] <= 1000000]['price_doc'].count()
+
+def calculate_squad_in_cheap_apartment(x):
+    return round(x[x['price_doc'] <= 1000000]['full_sq'].mean(), 0)

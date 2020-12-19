@@ -25,3 +25,9 @@ def calculate_cheap_apartment(x):
 
 def calculate_squad_in_cheap_apartment(x):
     return round(x[x['price_doc'] <= 1000000]['full_sq'].mean(), 0)
+
+def calculate_mean_price_in_new_housing(x):
+    return round(x[(x.num_room == 3) & (x.build_year >= 2010)]['price_doc'].mean(), 0)
+
+def calculate_mean_squared_by_num_rooms(x):
+    return round(df.groupby(['num_room'])['full_sq'].mean(), 2)

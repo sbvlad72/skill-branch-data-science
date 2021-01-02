@@ -13,8 +13,9 @@ def prepare_data(x):
         #print(col)
         x.drop(columns=col, inplace=True)
     #x.drop(columns = [s_dtypes.loc[s_dtypes == 'object'].index], inplace=True)
-    x.reset_index(drop=True)
-    #x.drop(columns=["id"], inplace=True)
+    #x = x.reset_index(drop=True)
+    x.drop(columns=["id"], inplace=True)
     x1 = x.dropna(axis=1)
     x2 = x1.pop("price_doc")
     return x1, x2
+

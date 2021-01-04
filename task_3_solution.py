@@ -23,3 +23,8 @@ def prepare_data(x):
 def skale_data(x, scaleMeth):
     scaler = scaleMeth()
     return scaler.fit_transform(x)
+
+def prepare_data_for_model(x, scaleMeth):
+    x, y = prepare_data(x)
+    x = skale_data(x, scaleMeth)
+    return x, y

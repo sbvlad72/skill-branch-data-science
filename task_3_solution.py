@@ -23,8 +23,7 @@ def prepare_data(x):
     x2 = x1.pop("price_doc")
     return x1, x2
 
-def scale_data(x, scaleMeth):
-    scaler = scaleMeth()
+def scale_data(x, scaler):
     return scaler.fit_transform(x)
 
 def prepare_data_for_model(x, scaleMeth):

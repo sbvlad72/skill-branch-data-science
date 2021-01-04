@@ -1,5 +1,8 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 def split_data_into_two_samples(x):
     return train_test_split(x, test_size=0.3, random_state=42)
@@ -31,3 +34,10 @@ def prepare_data_for_model(x, scaleMeth):
 
 def fit_first_linear_model(x, y):
     return LinearRegression().fit(x, y)
+
+def evaluate_model(m, x, y):
+    y_pred = m.predict(x)
+    mse = mean_squared_error(y, y_pred)
+    mae = mean_absolute_error(y, y_pred)
+    r2 = r2_score(y, y_pred)
+    return round(mse, 2), round(mae, 2), round(r2, 2)

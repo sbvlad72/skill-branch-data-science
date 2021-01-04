@@ -20,13 +20,13 @@ def prepare_data(x):
     x2 = x1.pop("price_doc")
     return x1, x2
 
-def skale_data(x, scaleMeth):
+def scale_data(x, scaleMeth):
     scaler = scaleMeth()
     return scaler.fit_transform(x)
 
 def prepare_data_for_model(x, scaleMeth):
     x, y = prepare_data(x)
-    x = skale_data(x, scaleMeth)
+    x = scale_data(x, scaleMeth)
     return x, y
 
 def fit_first_linear_model(x, y):

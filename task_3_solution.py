@@ -27,9 +27,21 @@ def scale_data(x, scaler):
     return scaler.fit_transform(x)
 
 def prepare_data_for_model(x, scaleMeth):
-    x, y = prepare_data(x)
-    x = scale_data(x, scaleMeth)
-    return x, y
+    #x.drop(columns=["id"], inplace=True)
+    #del x["id"]
+    s_dtypes = x.dtypes
+    #print(s_dtypes.loc[s_dtypes == 'object'].index.to_list())
+    for col in  s_dtypes.loc[s_dtypes == 'object'].index.to_list():
+        #print(col)
+        x.drop(columns=col, inplace=True)
+    #x.drop(columns = [s_dtypes.loc[s_dtypes == 'object'].index], inplace=True)
+    #x = x.reset_index(drop=True)
+    if "id" in x.columns: 
+        x.drop(columns=["id"], inplace=True)
+    x1 = x.dropna(axis=1)
+    x2 = x1.pop("price_doc")
+    x1 = scaleMeth.fit_transform(x1)
+    return x1, x2
 
 def fit_first_linear_model(x, y):
     return LinearRegression().fit(x, y)

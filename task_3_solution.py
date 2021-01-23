@@ -29,7 +29,7 @@ def scale_data(x, scaler):
 def prepare_data_for_model(x, scaleMeth):
     x, y = prepare_data(x)
     x = scale_data(x, scaleMeth)
-    return y, x
+    return x, y
 
 def fit_first_linear_model(x, y):
     return LinearRegression().fit(x, y)

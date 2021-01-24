@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.linear_model import LinearRegression
@@ -37,7 +38,7 @@ def fit_first_linear_model(x, y):
 
 def evaluate_model(m, x, y):
     y_pred = m.predict(x)
-    mse = mean_squared_error(y, y_pred)
+    mse = np.sqrt(mean_squared_error(y, y_pred))
     mae = mean_absolute_error(y, y_pred)
     r2 = r2_score(y, y_pred)
     return round(mse, 2), round(mae, 2), round(r2, 2)

@@ -24,7 +24,8 @@ def prepare_data(x):
     return x1, x2
 
 def scale_data(x, scaler):
-    return scaler.fit_transform(x)
+    np_arr = scaler.fit_transform(x)
+    return pd.DataFrame(np_arr, index=range(np_arr.shape[0]), columns=range(np_arr.shape[1]))
 
 def prepare_data_for_model(x, scaleMeth):
     x, y = prepare_data(x)
